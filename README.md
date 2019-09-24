@@ -1,4 +1,5 @@
-# inclusive_bot
+![inclusiveBot](https://avatars0.githubusercontent.com/in/38059?s=60&u=a0231357e67efbe5677c2571831c7e5a4e8c724e&v=4)
+# inclusiveBot
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that checks your pull requests (PR) for unfriendly terminology.
 
@@ -11,7 +12,7 @@ Checks your PR for unfriendly, or not inclusive terminology. These words have be
 To Do:
 - [ ] Gives you some suggestions on alternative words to use.
 
-## What this bot will do
+## What this bot won't do
 
 This bot won't change your code for you. It won't correct your grammar.
 
