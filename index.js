@@ -1,4 +1,5 @@
 const fs = require('fs');
+const unfriendlyWordsHere = require('./lib/non_friendly');
 // const contents = fs.readFileSync('./lib/non_friendly.json');
 // const jsonContent = JSON.parse(contents);
 
@@ -22,8 +23,20 @@ module.exports = app => {
 			number,
 		});
 		const checkCommit = files.data[0].patch.split('\n');
-		const unfriendlyWordsHere = require('./lib/non_friendly');
-		const checkerFinal = checkCommit.some(v => unfriendlyWordsHere.includes(v));
+		const myExpressions = unfriendlyWordsHere.map(word => {
+			return new RegExp(word, 'ig');
+		});
+		const checkerFinal = checkCommit
+			.filter(line => line[0] === '+')
+			.some(line => {
+				for (const expression of myExpressions) {
+					if (expression.test(line)) {
+						return true;
+					}
+				}
+				return false;
+			});
+		// const checkerFinal = checkCommit.some(v => unfriendlyWordsHere.includes(v));
 		if (checkerFinal) {
 			context.github.issues.createComment(isUnfriendlyComment);
 		}
