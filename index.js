@@ -23,6 +23,9 @@ module.exports = app => {
 			number,
 		});
 		const checkCommit = files.data[0].patch.split('\n');
+		const sampleCommit = [
+			'+this is a sentence with the words blacklist and just in it',
+		];
 		const myExpressions = unfriendlyWordsHere.map(word => {
 			return new RegExp(word, 'ig');
 		});
@@ -36,7 +39,7 @@ module.exports = app => {
 				}
 				return false;
 			});
-		// const checkerFinal = checkCommit.some(v => unfriendlyWordsHere.includes(v));
+		console.log('what do i get here', expression);
 		if (checkerFinal) {
 			context.github.issues.createComment(isUnfriendlyComment);
 		}
