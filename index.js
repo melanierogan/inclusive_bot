@@ -25,6 +25,8 @@ module.exports = app => {
 		};
 		const extractBadWords = (ExtractedBadWordsArray, line) => {
 			for (const badWord of badWords) {
+				// to make case sensitive, lowercase the line that comes in
+				// remember badwords list to all be lowercase
 				if (line.includes(badWord)) {
 					ExtractedBadWordsArray.push({
 						word: badWord,
@@ -52,6 +54,9 @@ module.exports = app => {
 
 		// Hoe do i best handle that this will only ever give me the first element in the array
 		// in handlebars I would use each but here I need to use a for loop
+
+		// map through the result0.word set as const and then have a li structure in the actual
+		// body
 		const isUnfriendlyComment = context.issue({
 			body: `💔 This PR contains some non inclusive or unfriendly terms.\n
 			These terms include :\n ${result[0].word}. Then try ${issueContent}`,
@@ -76,5 +81,5 @@ module.exports = app => {
 // probot works and in the end on truth values it posts
 // a payload via a console log
 
-// THREE: look into how i can use regex for the words like
+// This one still stands, but could get feedback first: look into how i can use regex for the words like
 // blacklist vs black-list vs black
