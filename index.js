@@ -62,7 +62,7 @@ module.exports = app => {
 		Issue posted automatically by [inclusiveBot](https://github.com/apps/inclusivebot).`;
 
 		const isUnfriendlyComment = context.issue({
-			body: body,
+			body: `${body}`,
 		});
 
 		if (result[0].status) {
