@@ -4,13 +4,13 @@ const badWords = require('./lib/non_friendly');
  * @param {import('probot').Application} app
  */
 module.exports = app => {
-	app.log('Yay, the app was loaded!');
+	app.log('APP LOADED');
 	app.on('pull_request', async context => {
-		console.log('a pull request started');
+		app.log('PULL REQUEST STARTED');
 		const owner = context.payload.repository.owner.login;
-		console.log(owner, 'who owns the 	PR');
+		app.log(owner, 'PR  - OPENED BY');
 		const repo = context.payload.repository.name;
-		console.log(repo, 'the repo name');
+		app.log(repo, 'PR - REPO NAME');
 		const number = context.payload.number;
 		// older below
 		const files = await context.github.pullRequests.listFiles({
@@ -57,13 +57,13 @@ module.exports = app => {
 
 		const isUnfriendlyComment = context.issue({
 			body: `💔 This PR contains some non inclusive or unfriendly terms.
-			The following words were found: *${wordsFound}*\n
-			These words were found on the following lines:\n *{linesFound}* `,
+			The following words were found: ${wordsFound}
+			These words were found on the following lines: ${linesFound}`,
 		});
 
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
-			console.log('ISSUE POSTED');
+			app.log('ISSUE POSTED');
 		}
 	});
 };
