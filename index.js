@@ -1,4 +1,3 @@
-const fs = require('fs');
 const badWords = require('./lib/non_friendly');
 /**
  * This is the main entrypoint to your Probot app
@@ -44,22 +43,19 @@ module.exports = app => {
 			.filter(onlyAddedLines)
 			.map(removeFirstPlus)
 			.reduce(extractBadWords, []);
-		const sampleCommit = [
-			'+this is a sentence with the words blacklist and just in it',
-		];
-		const issueContent = JSON.stringify(result);
-		for (const results in result) {
-			console.log('this many', results);
-		}
 
-		// Hoe do i best handle that this will only ever give me the first element in the array
-		// in handlebars I would use each but here I need to use a for loop
+		const wordsFound = result.map(function(el) {
+			return el.word;
+		});
 
-		// map through the result0.word set as const and then have a li structure in the actual
-		// body
+		const linesFound = result.map(function(el) {
+			return el.line;
+		});
+
 		const isUnfriendlyComment = context.issue({
-			body: `💔 This PR contains some non inclusive or unfriendly terms.\n
-			These terms include :\n ${result[0].word}. Then try ${issueContent}`,
+			body: `💔 This PR contains some non inclusive or unfriendly terms.
+			The following words were found: ${wordsFound}
+			These words were found on the following lines: ${linesFound}`,
 		});
 
 		if (result[0].status) {
@@ -68,18 +64,3 @@ module.exports = app => {
 	});
 };
 
-// TO DO:
-
-// ONE: to do next, use the match() method which retrieves the result of a
-// matching string against a regular expression. This will return
-// aim to return an array of unfriendly words that have been used
-// in the PR
-
-// TWO: Make the testing a little more streamlined. So you don't have
-// to post an issue to see the whole thing working
-// perhaps have a script that mimicks how the handler for
-// probot works and in the end on truth values it posts
-// a payload via a console log
-
-// This one still stands, but could get feedback first: look into how i can use regex for the words like
-// blacklist vs black-list vs black
