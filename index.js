@@ -63,6 +63,7 @@ module.exports = app => {
 
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
+			console.log('ISSUE POSTED');
 		}
 	});
 };
