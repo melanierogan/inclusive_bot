@@ -43,7 +43,7 @@ npm start
 
 ## Feedback
 
-I would welcome any feedback you have on the project. You can open an issue via this repo, or drop me a slack message. 
+I would welcome any feedback you have on the project. You can open an issue via this repo, or drop me a slack message. Feedback can include constructive or helpful comments on the format of the code, the approach to the app or if you have come across any unfriendly or not inclusive words or terminology, you can submit a PR to add more words to those I have already researched or crowd sourced. Thank you!
 
 
 ## License
