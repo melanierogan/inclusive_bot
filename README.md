@@ -15,7 +15,7 @@ Checks your PR for unfriendly, or not inclusive terminology. These words have be
 
 ## What this bot won't do
 
-This bot won't change your code for you. It won't correct your grammar. It won't suggest alternative terms to use, but that is something I am thinking about. 
+This bot won't change your code for you. It won't correct your grammar. It won't suggest alternative terms to use, but that is something I want to add after I get some initial feedback.
 
 
 ## How does it work?
@@ -40,6 +40,10 @@ npm install
 # Run the bot
 npm start
 ```
+
+## Feedback
+
+I would welcome any feedback you have on the project. You can open an issue via this repo, or drop me a slack message. 
 
 
 ## License
