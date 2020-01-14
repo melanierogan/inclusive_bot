@@ -57,8 +57,8 @@ module.exports = app => {
 
 		const isUnfriendlyComment = context.issue({
 			body: `💔 This PR contains some non inclusive or unfriendly terms.
-			The following words were found: ${wordsFound}
-			These words were found on the following lines: ${linesFound}`,
+			The following words were found: *${wordsFound}*\n
+			These words were found on the following lines:\n *{linesFound}* `,
 		});
 
 		if (result[0].status) {
