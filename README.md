@@ -3,8 +3,9 @@
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that checks your pull requests (PR) for unfriendly terminology.
 
-The github app that you set up on your own repoositories with your own chosen permissions is [here](https://github.com/apps/inclusivebot).
+
 The bot is currently hosted on glitch, [here](https://melanierogan-inclusive-bot.glitch.me) 
+The github app is [here](https://github.com/apps/inclusivebot). You will have to you set up on your own repositories with your own chosen permissions.
 
 
 ## What this bot will do
@@ -21,6 +22,7 @@ This bot won't change your code for you. It won't correct your grammar. It won't
 
 When the inclusiveBot github app is installed on your repos any incoming PRs are checked for unfriendly terms. If one is found, a comment appears on the PR. 
 
+<img width="773" alt="Screenshot 2020-01-14 at 00 17 43" src="https://user-images.githubusercontent.com/16557524/72302871-4e354e80-3663-11ea-8da8-223798e7c9a7.png">
 
 ## Setup
 
