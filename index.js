@@ -27,8 +27,6 @@ module.exports = app => {
 		};
 		const extractBadWords = (ExtractedBadWordsArray, line) => {
 			for (const badWord of badWords) {
-				// to make case sensitive, lowercase the line that comes in
-				// remember badwords list to all be lowercase
 				if (line.includes(badWord)) {
 					ExtractedBadWordsArray.push({
 						word: badWord,
@@ -55,10 +53,16 @@ module.exports = app => {
 			return el.line;
 		});
 
+		const body = `
+		> :broken_heart: This PR contains some non inclusive or unfriendly terms.
+
+		* The following words were used: **${wordsFound}**.
+		* These words were found on the following lines: **${linesFound}**.
+		-------------
+		Issue posted automatically by [inclusiveBot](https://github.com/apps/inclusivebot).`;
+
 		const isUnfriendlyComment = context.issue({
-			body: `💔 This PR contains some non inclusive or unfriendly terms.
-			The following words were found: ${wordsFound}
-			These words were found on the following lines: ${linesFound}`,
+			body: body,
 		});
 
 		if (result[0].status) {
