@@ -6,8 +6,11 @@ const badWords = require('./lib/non_friendly');
 module.exports = app => {
 	app.log('Yay, the app was loaded!');
 	app.on('pull_request', async context => {
+		console.log('a pull request started');
 		const owner = context.payload.repository.owner.login;
+		console.log(owner, 'who owns the 	PR');
 		const repo = context.payload.repository.name;
+		console.log(repo, 'the repo name');
 		const number = context.payload.number;
 		// older below
 		const files = await context.github.pullRequests.listFiles({
