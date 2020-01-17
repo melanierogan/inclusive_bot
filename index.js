@@ -5,6 +5,7 @@ const badWords = require('./lib/non_friendly');
  */
 module.exports = app => {
 	app.log('APP LOADED');
+	console.log('APP LOADED CONSOLE LOG');
 	app.on('pull_request', async context => {
 		console.log('PULL REQUEST STARTED');
 		const owner = context.payload.repository.owner.login;
