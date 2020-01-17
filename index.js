@@ -6,13 +6,13 @@ const badWords = require('./lib/non_friendly');
 module.exports = app => {
 	app.log('APP LOADED');
 	app.on('pull_request', async context => {
-		app.log('PULL REQUEST STARTED');
+		console.log('PULL REQUEST STARTED');
 		const owner = context.payload.repository.owner.login;
-		app.log(owner, 'PR  - OPENED BY');
+		console.log(owner, 'PR  - OPENED BY');
 		const repo = context.payload.repository.name;
-		app.log(repo, 'PR - REPO NAME');
+		console.log(repo, 'PR - REPO NAME');
 		const number = context.payload.number;
-		// older below
+
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
@@ -53,14 +53,6 @@ module.exports = app => {
 			return el.line;
 		});
 
-		const body = `
-		> :broken_heart: This PR contains some non inclusive or unfriendly terms.
-
-		* You the following words were used: **${wordsFound}**.
-		* These words were found on the following lines: **${linesFound}**.
-		-------------
-		Issue posted automatically by [inclusiveBot](https://github.com/apps/inclusivebot).`;
-
 		const isUnfriendlyComment = context.issue({
 			body: `
 			> :broken_heart: This PR contains some non inclusive or unfriendly terms.
@@ -73,7 +65,7 @@ module.exports = app => {
 
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
-			app.log('ISSUE POSTED');
+			console.log('ISSUE POSTED');
 		}
 	});
 };

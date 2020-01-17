@@ -26,6 +26,11 @@ When the inclusiveBot github app is installed on your repos any incoming PRs are
 You can install the app to run on your chosen repos here: https://github.com/apps/inclusivebot
 
 
+## Feedback
+
+I would welcome any feedback you have on the project. You can open an issue via this repo, or drop me a slack message. Feedback can include constructive or helpful comments on the format of the code, the approach to the app or if you have come across any unfriendly or not inclusive words or terminology, you can submit a PR to add more words to those I have already researched or crowd sourced. You can submit any pull requests to add words to `non_friendly.js`. Thank you!
+
+
 ## Development 
 
 If you'd like to take take the app a bit further you can fork, clone and get it running by following the below direction: 
@@ -37,11 +42,6 @@ npm install
 # Run the bot
 npm start
 ```
-
-## Feedback
-
-I would welcome any feedback you have on the project. You can open an issue via this repo, or drop me a slack message. Feedback can include constructive or helpful comments on the format of the code, the approach to the app or if you have come across any unfriendly or not inclusive words or terminology, you can submit a PR to add more words to those I have already researched or crowd sourced. Thank you!
-
 
 ## License
 
