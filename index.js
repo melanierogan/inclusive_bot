@@ -55,13 +55,9 @@ module.exports = app => {
 		});
 
 		const isUnfriendlyComment = context.issue({
-			body: `
-			> :broken_heart: This PR contains some non inclusive or unfriendly terms.
-
-			* You the following words were used: **${wordsFound}**.
-			* These words were found on the following lines: **${linesFound}**.
-			-------------
-			Issue posted automatically by [inclusiveBot](https://github.com/apps/inclusivebot).`,
+			body: `:broken_heart: This PR contains some non inclusive or unfriendly terms.
+			You the following words were used: **${wordsFound}**.
+		  These words were found on the following lines: **${linesFound}**.`,
 		});
 
 		if (result[0].status) {
