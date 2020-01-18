@@ -9,7 +9,7 @@ module.exports = app => {
 	app.on('pull_request', async context => {
 		let pr;
 		let myLogger = logger.child({
-			pr: context.payload.pull_request.issue_number,
+			pr: context.payload.pull_request.pull_number,
 		});
 		myLogger.info({
 			action: 'PULL_REQUEST_NUMBER',
@@ -24,7 +24,7 @@ module.exports = app => {
 			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
-		const number = context.payload.issue_number;
+		const number = context.payload.pull_number;
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
