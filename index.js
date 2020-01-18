@@ -7,6 +7,10 @@ module.exports = app => {
 		action: 'APP_LOADED',
 	});
 	app.on('pull_request', async context => {
+		console.log(
+			context.payload.pull_request,
+			'****** what the hell is going on ******',
+		);
 		let pr;
 		let myLogger = logger.child({
 			pr: context.payload.pull_request.pull_number,
