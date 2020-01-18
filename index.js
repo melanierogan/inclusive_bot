@@ -1,30 +1,25 @@
 const badWords = require('./lib/non_friendly');
 const { logger } = require('probot/lib/logger');
 
-// /**
-//  * This is the main entrypoint to your Probot app
-//  * @param {import('probot').Application} app
-//  */
-
-// module.exports = app => {
-// 	app.on(`pull_request`, async context => {
-// 		context.log({
-// 			event: context.event,
-// 			action: context.payload.action,
-// 			random: 'bum it',
-// 		});
-// 		console.log('we are getting a step further');
-// 	});
-// };
 module.exports = app => {
 	app.log('APP LOADED');
-	console.log('APP LOADED CONSOLE LOG');
+	myLogger.info({
+		action: `APP_LOADED'`,
+	});
 	app.on('pull_request', async context => {
-		console.log('PULL REQUEST STARTED');
+		myLogger.info({
+			action: `PULL_REQUEST_STARTED'`,
+		});
 		const owner = context.payload.repository.owner.login;
-		console.log(owner, 'PR  - OPENED BY');
+		myLogger.info({
+			action: `PULL_REQUEST_STARTED'`,
+			pr: context.payload.repository.owner.login,
+		});
 		const repo = context.payload.repository.name;
-		console.log(repo, 'PR - REPO NAME');
+		myLogger.info({
+			action: `PULL_REQUEST_STARTED'`,
+			pr: context.payload.repository.name,
+		});
 		const number = context.payload.number;
 		let myLogger = logger.child({ pr: context.payload.pull_request.number });
 		const files = await context.github.pullRequests.listFiles({
@@ -75,9 +70,7 @@ module.exports = app => {
 
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
-			console.log('ISSUE POSTED');
 			myLogger.info({
-				event: EVENT,
 				action: `ISSUE_POSTED`,
 				pr,
 			});
