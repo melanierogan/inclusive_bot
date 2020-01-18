@@ -29,10 +29,12 @@ module.exports = app => {
 			pr: context.payload.repository.name,
 		});
 
+		console.log(context.pullRequests.listFiles(), 'please work');
+		console.log(await context.pullRequests.listFiles(), 'please work with await');
+
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
-			pull_number,
 		});
 
 		console.log(files.data[0], '******* buuuuuuuum ******* ');
