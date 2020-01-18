@@ -28,7 +28,7 @@ module.exports = app => {
 			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
-		const number = context.payload.pull_number;
+
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
