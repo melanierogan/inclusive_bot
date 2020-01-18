@@ -1,7 +1,7 @@
 const badWords = require('./lib/non_friendly');
 const { logger } = require('probot/lib/logger');
 const myLogger = logger.child({ foo: true });
-console.log(myLogger, 'what happens here');
+console.log(myLogger._events, 'what happens here');
 // /**
 //  * This is the main entrypoint to your Probot app
 //  * @param {import('probot').Application} app
@@ -70,16 +70,14 @@ module.exports = app => {
 
 		const isUnfriendlyComment = context.issue({
 			body: `💔 This PR contains some non inclusive or unfriendly terms.
-			The following words were found: *${wordsFound}*\n
-			These words were found on the following lines:\n *${linesFound}* `,
+			The following words were found: ${wordsFound}
+			These words were found on the following lines: ${linesFound}`,
 		});
-
-		console.log(result, 'result');
-		console.log(result[0], 'what now');
-		console.log(result[0].status, 'what do i get here for status');
 
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
+			console.log('ISSUE POSTED');
+			myLogger.info;
 		}
 	});
 };
