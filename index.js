@@ -13,7 +13,7 @@ module.exports = app => {
 		);
 		let pr;
 		let myLogger = logger.child({
-			pr: context.payload.pull_request.pull_number,
+			pr: context.payload.pull_request,
 		});
 		myLogger.info({
 			action: 'PULL_REQUEST_NUMBER',
