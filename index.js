@@ -28,12 +28,15 @@ module.exports = app => {
 			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
-
+		const tryThis = await context.github.pullRequests;
+		console.log('*******', tryThis);
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
+			pull_number,
 		});
-		console.log(files, 'buuuuuuuum');
+
+		console.log(files, '******* buuuuuuuum ******* ');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
 		const checkCommit = files.data[0].patch.split('\n');
 		const onlyAddedLines = line => {
