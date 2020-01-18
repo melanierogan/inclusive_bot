@@ -29,11 +29,11 @@ module.exports = app => {
 			pr: context.payload.repository.name,
 		});
 		const number = context.payload.pull_number;
-		const files = await context.github.pullRequests.listFiles({
-			owner,
-			repo,
-			number,
-		});
+		// const files = await context.github.pullRequests.listFiles({
+		// 	owner,
+		// 	repo,
+		// 	number,
+		// });
 		const checkCommit = context.payload.repository.body.patch.split('\n');
 		// const checkCommit = files.data[0].patch.split('\n');
 		const onlyAddedLines = line => {
