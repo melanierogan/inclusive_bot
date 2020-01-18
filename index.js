@@ -73,10 +73,11 @@ module.exports = app => {
 			You the following words were used: **${wordsFound}**.
 		  These words were found on the following lines: **${linesFound}**.`,
 		});
-
+		console.log(result, 'result');
+		console.log(result[0], 'what now');
+		console.log(result[0].status, 'what do i get here for status');
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
-			console.log('ISSUE POSTED');
 		}
 	});
 };
