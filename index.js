@@ -4,21 +4,22 @@ const { logger } = require('probot/lib/logger');
 module.exports = app => {
 	app.log('APP LOADED');
 	logger.info({
-		action: `APP_LOADED'`,
+		action: 'APP_LOADED',
 	});
 	app.on('pull_request', async context => {
+		let pr;
 		let myLogger = logger.child({ pr: context.payload.pull_request.number });
 		myLogger.info({
-			action: `PULL_REQUEST_STARTED'`,
+			action: 'PULL_REQUEST_STARTED',
 		});
 		const owner = context.payload.repository.owner.login;
 		myLogger.info({
-			action: `PULL_REQUEST_STARTED'`,
+			action: 'PULL_REQUEST_STARTED',
 			pr: context.payload.repository.owner.login,
 		});
 		const repo = context.payload.repository.name;
 		myLogger.info({
-			action: `PULL_REQUEST_STARTED'`,
+			action: 'PULL_REQUEST_STARTED',
 			pr: context.payload.repository.name,
 		});
 		const number = context.payload.number;
@@ -71,7 +72,7 @@ module.exports = app => {
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
 			myLogger.info({
-				action: `ISSUE_POSTED`,
+				action: 'ISSUE_POSTED',
 				pr,
 			});
 		}
