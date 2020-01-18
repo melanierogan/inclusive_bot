@@ -69,10 +69,11 @@ module.exports = app => {
 		});
 
 		const isUnfriendlyComment = context.issue({
-			body: `:broken_heart: This PR contains some non inclusive or unfriendly terms.
-			You the following words were used: **${wordsFound}**.
-		  These words were found on the following lines: **${linesFound}**.`,
+			body: `💔 This PR contains some non inclusive or unfriendly terms.
+			The following words were found: *${wordsFound}*\n
+			These words were found on the following lines:\n *${linesFound}* `,
 		});
+
 		console.log(result, 'result');
 		console.log(result[0], 'what now');
 		console.log(result[0].status, 'what do i get here for status');
