@@ -8,21 +8,23 @@ module.exports = app => {
 	});
 	app.on('pull_request', async context => {
 		let pr;
-		let myLogger = logger.child({ pr: context.payload.pull_request.number });
+		let myLogger = logger.child({
+			pr: context.payload.pull_request.issue_number,
+		});
 		myLogger.info({
-			action: 'PULL_REQUEST_STARTED',
+			action: 'PULL_REQUEST_NUMBER',
 		});
 		const owner = context.payload.repository.owner.login;
 		myLogger.info({
-			action: 'PULL_REQUEST_STARTED',
+			action: 'PULL_REQUEST_OWNER',
 			pr: context.payload.repository.owner.login,
 		});
 		const repo = context.payload.repository.name;
 		myLogger.info({
-			action: 'PULL_REQUEST_STARTED',
+			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
-		const number = context.payload.number;
+		const number = context.payload.issue_number;
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
