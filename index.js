@@ -33,7 +33,7 @@ module.exports = app => {
 			owner,
 			repo,
 		});
-		console.log(files);
+		console.log(files, 'buuuuuuuum');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
 		const checkCommit = files.data[0].patch.split('\n');
 		const onlyAddedLines = line => {
