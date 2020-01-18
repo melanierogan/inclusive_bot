@@ -3,7 +3,7 @@ const { logger } = require('probot/lib/logger');
 
 module.exports = app => {
 	app.log('APP LOADED');
-	myLogger.info({
+	logger.info({
 		action: `APP_LOADED'`,
 	});
 	app.on('pull_request', async context => {
