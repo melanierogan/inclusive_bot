@@ -2,14 +2,18 @@ const badWords = require('./lib/non_friendly');
 const { logger } = require('probot/lib/logger');
 const myLogger = logger.child({ foo: true });
 console.log(myLogger, 'what happens here');
-/**
- * This is the main entrypoint to your Probot app
- * @param {import('probot').Application} app
- */
+// /**
+//  * This is the main entrypoint to your Probot app
+//  * @param {import('probot').Application} app
+//  */
 
 module.exports = app => {
 	app.on(`*`, async context => {
-		context.log({ event: context.event, action: context.payload.action });
+		context.log({
+			event: context.event,
+			action: context.payload.action,
+			random: 'bum it',
+		});
 		console.log('we are getting a step further');
 	});
 };
