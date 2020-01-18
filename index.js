@@ -1,4 +1,7 @@
 const badWords = require('./lib/non_friendly');
+const { logger } = require('probot/lib/logger');
+const myLogger = logger.child({ foo: true });
+console.log(myLogger, 'what happens here');
 /**
  * This is the main entrypoint to your Probot app
  * @param {import('probot').Application} app
@@ -8,6 +11,7 @@ module.exports = app => {
 	console.log('APP LOADED CONSOLE LOG');
 	app.on('pull_request', async context => {
 		console.log('PULL REQUEST STARTED');
+		console.log(context.payload, 'the payload');
 		const owner = context.payload.repository.owner.login;
 		console.log(owner, 'PR  - OPENED BY');
 		const repo = context.payload.repository.name;
