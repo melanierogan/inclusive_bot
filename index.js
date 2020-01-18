@@ -29,8 +29,8 @@ module.exports = app => {
 			pr: context.payload.repository.name,
 		});
 
-		console.log(context.pullRequests(), 'please work');
-		console.log(await context.pullRequests(), 'please work with await');
+		console.log(context.github.pullRequests, 'please work');
+		console.log(await context.github.pullRequests, 'please work with await');
 
 		const files = await context.github.pullRequests.listFiles({
 			owner,
