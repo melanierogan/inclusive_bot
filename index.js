@@ -8,7 +8,7 @@ console.log(myLogger, 'what happens here');
 //  */
 
 module.exports = app => {
-	app.on(`*`, async context => {
+	app.on(`pull_request`, async context => {
 		context.log({
 			event: context.event,
 			action: context.payload.action,
