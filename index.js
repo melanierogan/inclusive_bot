@@ -8,7 +8,7 @@ module.exports = app => {
 	});
 	app.on('pull_request', async context => {
 		console.log(
-			context.payload.pull_request,
+			context.payload.pull_request.body,
 			'****** what the hell is going on ******',
 		);
 		let pr;
@@ -34,7 +34,8 @@ module.exports = app => {
 			repo,
 			number,
 		});
-		const checkCommit = files.data[0].patch.split('\n');
+		const checkCommit = context.payload.repository.body.patch.split('\n');
+		// const checkCommit = files.data[0].patch.split('\n');
 		const onlyAddedLines = line => {
 			return line.startsWith('+');
 		};
