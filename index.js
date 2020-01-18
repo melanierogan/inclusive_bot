@@ -1,6 +1,5 @@
 const badWords = require('./lib/non_friendly');
 const { logger } = require('probot/lib/logger');
-let myLogger = logger.child({ pr: context.payload.pull_request.number });
 
 // /**
 //  * This is the main entrypoint to your Probot app
@@ -27,7 +26,7 @@ module.exports = app => {
 		const repo = context.payload.repository.name;
 		console.log(repo, 'PR - REPO NAME');
 		const number = context.payload.number;
-
+		let myLogger = logger.child({ pr: context.payload.pull_request.number });
 		const files = await context.github.pullRequests.listFiles({
 			owner,
 			repo,
@@ -77,7 +76,7 @@ module.exports = app => {
 		if (result[0].status) {
 			context.github.issues.createComment(isUnfriendlyComment);
 			console.log('ISSUE POSTED');
-			logger.info({
+			myLogger.info({
 				event: EVENT,
 				action: `ISSUE_POSTED`,
 				pr,
