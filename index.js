@@ -25,8 +25,8 @@ module.exports = app => {
 			pr: context.payload.repository.name,
 		});
 		myLogger.info({
-			action: 'PULL_REQUEST_REPOSITORY',
-			pr: context.payload.repository.pull_number,
+			action: 'PULL_REQUEST_NUMBER',
+			pr: context.payload.repository.pull_request.number,
 		});
 
 		const files = await context.github.pullRequests.listFiles(
@@ -34,7 +34,9 @@ module.exports = app => {
 				pull_number: context.payload.pull_request.number,
 			}),
 		);
+		app.log('how far do we get 1');
 		console.log(files, '<<<<< files files >>>>>>');
+		app.log('how far do we get 2');
 		console.log(files.data[0], '******* buuuuuuuum ******* ');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
 		const checkCommit = files.data[0].patch.split('\n');
