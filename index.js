@@ -31,7 +31,7 @@ module.exports = app => {
 
 		const files = await context.github.pullRequests.listFiles(
 			context.repo({
-				pull_number: context.payload.pull_request.number,
+				pull_number: context.payload.repository.pull_request.number,
 			}),
 		);
 		app.log('how far do we get 1');
