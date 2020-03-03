@@ -86,6 +86,11 @@ module.exports = app => {
 				action: 'ISSUE_POSTED',
 				pr,
 			});
+		} else {
+			myLogger.info({
+				action: 'NO_WORDS_FOUND',
+				pr,
+			});
 		}
 	});
 };
