@@ -9,17 +9,11 @@ module.exports = app => {
 		action: 'APP_LOADED',
 	});
 	app.on('pull_request', async context => {
-		console.log(
-			context.payload.pull_request.body,
-			'****** what the hell is going on ******',
-		);
 		let pr;
 		let myLogger = logger.child({
 			pr: context.payload.pull_request,
 		});
-		myLogger.info({
-			action: 'PULL_REQUEST_NUMBER',
-		});
+
 		const owner = context.payload.repository.owner.login;
 		myLogger.info({
 			action: 'PULL_REQUEST_OWNER',
