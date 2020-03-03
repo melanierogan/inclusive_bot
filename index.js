@@ -24,10 +24,16 @@ module.exports = app => {
 			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
+		myLogger.info({
+			action: 'PULL_REQUEST_REPOSITORY',
+			pr: context.payload.repository.pull_number,
+		});
 
-		const files = await context.github.pullRequests.listFiles(context.repo({
-			pull_number: context.payload.pull_request.number
-		}));
+		const files = await context.github.pullRequests.listFiles(
+			context.repo({
+				pull_number: context.payload.pull_request.number,
+			}),
+		);
 		console.log(files, '<<<<< files files >>>>>>');
 		console.log(files.data[0], '******* buuuuuuuum ******* ');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
