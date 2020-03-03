@@ -29,7 +29,7 @@ module.exports = app => {
 			owner,
 			repo,
 		});
-
+		console.log(files, '<<<<< files files >>>>>>');
 		console.log(files.data[0], '******* buuuuuuuum ******* ');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
 		const checkCommit = files.data[0].patch.split('\n');
