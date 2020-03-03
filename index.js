@@ -25,10 +25,9 @@ module.exports = app => {
 			pr: context.payload.repository.name,
 		});
 
-		const files = await context.github.pullRequests.listFiles({
-			owner,
-			repo,
-		});
+		const files = await context.github.pullRequests.listFiles(context.repo({
+			pull_number: context.payload.pull_request.number
+		}));
 		console.log(files, '<<<<< files files >>>>>>');
 		console.log(files.data[0], '******* buuuuuuuum ******* ');
 		// const checkCommit = context.payload.repository.body.patch.split('\n');
