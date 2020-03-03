@@ -1,5 +1,7 @@
 const badWords = require('./lib/non_friendly');
-const { logger } = require('probot/lib/logger');
+const {
+	logger
+} = require('probot/lib/logger');
 
 module.exports = app => {
 	app.log('APP LOADED');
@@ -28,9 +30,6 @@ module.exports = app => {
 			action: 'PULL_REQUEST_REPOSITORY',
 			pr: context.payload.repository.name,
 		});
-
-		console.log(context.github.pullRequests, 'please work');
-		console.log(await context.github.pullRequests, 'please work with await');
 
 		const files = await context.github.pullRequests.listFiles({
 			owner,
@@ -66,11 +65,11 @@ module.exports = app => {
 			.map(removeFirstPlus)
 			.reduce(extractBadWords, []);
 
-		const wordsFound = result.map(function(el) {
+		const wordsFound = result.map(function (el) {
 			return el.word;
 		});
 
-		const linesFound = result.map(function(el) {
+		const linesFound = result.map(function (el) {
 			return el.line;
 		});
 
@@ -84,6 +83,11 @@ module.exports = app => {
 			context.github.issues.createComment(isUnfriendlyComment);
 			myLogger.info({
 				action: 'ISSUE_POSTED',
+				pr,
+			});
+		} else {
+			myLogger.info({
+				action: 'NO_WORDS_FOUND',
 				pr,
 			});
 		}
